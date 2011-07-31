@@ -48,6 +48,13 @@
         </script>
 
 <ul data-source="movies">
+
+    <script id="anotherSuperfluousScriptTag">
+        // If we don't specify the data-template attribute, then the plugin
+        // will search a child of type <script> and type "text/x-jquery-tmpl".
+        // So this script tag won't influence.
+    </script>
+
     <script id="movieTemplate" type="text/x-jquery-tmpl">
         <li><b>${Name}</b> (${ReleaseYear})</li>
     </script>

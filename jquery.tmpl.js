@@ -546,7 +546,7 @@ Object.prototype.unwatch = function (prop) {
                 var tmplname = $(item).data('template');
 
                 if (tmplname == undefined){
-                    tmplname = $(item).find('script').attr('id');
+                    tmplname = $(item).find('script[type="text/x-jquery-tmpl"]').attr('id');
                 }
 
                 if (tmplname == undefined) {
