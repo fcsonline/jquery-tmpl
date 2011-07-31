@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
+	<script src="../../../jquery.tmpl.js" type="text/javascript"></script>
+	<link href="../../resources/demos.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a href="../../step-by-step.html">Home</a><br />
+
+<h3>Demo: Render template against data source</h3>
+
+<!--=================== Demo Section ===================-->
+
+        <script>
+
+            var model = new Object(); 
+
+            model.movies = [
+                { Name: "The Red Violin", ReleaseYear: "1998" },
+                { Name: "Eyes Wide Shut", ReleaseYear: "1999" },
+                { Name: "The Inheritance", ReleaseYear: "1976" }
+            ]; 
+            
+            model.customers = [
+                { Name: "John", surname: "Brown" },
+                { Name: "Carl", surname: "More" },
+                { Name: "Lewis", surname: "White" }
+            ]; 
+
+            $(document).ready(function(){
+                $("*[data-source]").tmpldatasource({'listener':model});
+                
+                $("#modifyMoviesDatasource").click(function(){
+                    // Example of datasource modification. Use ajax data insted dummy data 
+                    var moviestmp = model.movies;
+                    moviestmp.push( { Name: "Origen", ReleaseYear: "2010" });
+                    model.movies = moviestmp;
+                });
+                
+                $("#modifyCustomersDatasource").click(function(){
+                    // Example of datasource modification. Use ajax data insted dummy data 
+                    var customerstmp = model.customers;
+                    customerstmp.push( { Name: "Paul", surname: "Donald" });
+                    model.customers = customerstmp;
+                });
+            });
+        </script>
+
+<ul data-source="movies">
+    <script id="movieTemplate" type="text/x-jquery-tmpl">
+        <li><b>${Name}</b> (${ReleaseYear})</li>
+    </script>
+</ul>
+
+<button id="modifyMoviesDatasource">Modify the movies datasource</button>
+
+<br/>
+
+<script id="customersTemplate" type="text/x-jquery-tmpl">
+        <li><b>${Name}</b> (${surname})</li>
+</script>
+
+<ul data-source="customers" data-template="customersTemplate">
+</ul>
+
+<button id="modifyCustomersDatasource">Modify the customers datasource</button>
+
+<!--================ End of Demo Section ================-->
+
+</body>
+</html>
